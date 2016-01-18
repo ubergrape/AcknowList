@@ -31,7 +31,7 @@ public class AcknowListViewController: UITableViewController {
     /**
     The represented array of `Acknow`.
     */
-    var acknowledgements: [Acknow]?
+    public var acknowledgements: [Acknow]?
 
     /**
     Header text to be displayed above the list of the acknowledgements.
