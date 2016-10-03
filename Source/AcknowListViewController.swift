@@ -26,7 +26,7 @@ import UIKit
 /**
  Subclass of `UITableViewController` that displays a list of acknowledgements.
  */
-public class AcknowListViewController: UITableViewController {
+open class AcknowListViewController: UITableViewController {
     
     /**
      The represented array of `Acknow`.
@@ -151,7 +151,7 @@ public class AcknowListViewController: UITableViewController {
         return self.acknowledgementsPlistPath(name: DefaultAcknowledgementsPlistName)
     }
     
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib()
         
         let path: String?
@@ -225,7 +225,7 @@ public class AcknowListViewController: UITableViewController {
     
     // MARK: - View lifecycle
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         self.configureHeaderView()
@@ -240,7 +240,7 @@ public class AcknowListViewController: UITableViewController {
         }
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if let indexPath = self.tableView.indexPathForSelectedRow {
@@ -248,7 +248,7 @@ public class AcknowListViewController: UITableViewController {
         }
     }
     
-    public override func viewDidAppear(_ animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if self.acknowledgements == nil {
@@ -369,7 +369,7 @@ public class AcknowListViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let acknowledgements = self.acknowledgements {
             return acknowledgements.count
         }
@@ -377,11 +377,11 @@ public class AcknowListViewController: UITableViewController {
         return 0
     }
     
-    public override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    open override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let CellIdentifier = "Cell"
         let dequeuedCell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier)
         let cell: UITableViewCell
@@ -404,7 +404,7 @@ public class AcknowListViewController: UITableViewController {
     
     // MARK: Table view delegate
     
-    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let acknowledgements = self.acknowledgements,
             let acknowledgement = acknowledgements[indexPath.row] as Acknow?,
             let navigationController = self.navigationController {
