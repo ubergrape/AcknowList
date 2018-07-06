@@ -91,7 +91,7 @@ open class AcknowListViewController: UITableViewController {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
-    func commonInit(acknowledgementsPlistPath acknowledgementsPlistPath: String?) {
+    func commonInit(acknowledgementsPlistPath: String?) {
         self.title = AcknowListViewController.localizedTitle()
         
         if let acknowledgementsPlistPath = acknowledgementsPlistPath {
@@ -142,7 +142,7 @@ open class AcknowListViewController: UITableViewController {
         return self.localizedString(forKey: "VTAckAcknowledgements", defaultString: "Acknowledgements")
     }
     
-    class func acknowledgementsPlistPath(name name:String) -> String? {
+    class func acknowledgementsPlistPath(name: String) -> String? {
         return Bundle.main.path(forResource: name, ofType: "plist")
     }
     
@@ -234,7 +234,7 @@ open class AcknowListViewController: UITableViewController {
         if let navigationController = self.navigationController {
             if self.presentingViewController != nil &&
                 navigationController.viewControllers.first == self {
-                let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: "dismissViewController")
+                let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(AcknowListViewController.dismissViewController(sender:)))
                 self.navigationItem.leftBarButtonItem = item
             }
         }
@@ -268,7 +268,7 @@ open class AcknowListViewController: UITableViewController {
      
      - parameter sender: The event sender.
      */
-    @IBAction public func openCocoaPodsWebsite(sender: AnyObject) {
+    @IBAction @objc public func openCocoaPodsWebsite(sender: AnyObject) {
         let url = NSURL(string: AcknowListViewController.CocoaPodsURLString())
         if let url = url {
             UIApplication.shared.openURL(url as URL)
@@ -280,7 +280,7 @@ open class AcknowListViewController: UITableViewController {
      
      - parameter sender: The event sender.
      */
-    @IBAction public func dismissViewController(sender: AnyObject) {
+    @IBAction @objc public func dismissViewController(sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -341,7 +341,7 @@ open class AcknowListViewController: UITableViewController {
             if let CocoaPodsURL = CocoaPodsURL,
                 let CocoaPodsURLHost = CocoaPodsURL.host {
                 if footerText.range(of: CocoaPodsURLHost) != nil {
-                    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "openCocoaPodsWebsite")
+                    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AcknowListViewController.openCocoaPodsWebsite(sender:)))
                     label.addGestureRecognizer(tapGestureRecognizer)
                 }
             }
