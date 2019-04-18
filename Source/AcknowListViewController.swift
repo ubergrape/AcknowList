@@ -360,7 +360,7 @@ open class AcknowListViewController: UITableViewController {
         let font = UIFont.systemFont(ofSize: 12)
         let options: NSStringDrawingOptions = NSStringDrawingOptions.usesLineFragmentOrigin
         // should be (NSLineBreakByWordWrapping | NSStringDrawingUsesLineFragmentOrigin)?
-        let labelBounds: CGRect = labelText.boundingRect(with: CGSize(width: labelWidth, height: CGFloat.greatestFiniteMagnitude), options: options, attributes: [NSFontAttributeName: font], context: nil)
+        let labelBounds: CGRect = labelText.boundingRect(with: CGSize(width: labelWidth, height: CGFloat.greatestFiniteMagnitude), options: options, attributes: [NSAttributedString.Key.font: font], context: nil)
         let labelHeight = labelBounds.height
         
         return CGFloat(ceilf(Float(labelHeight)))
@@ -378,7 +378,7 @@ open class AcknowListViewController: UITableViewController {
     }
     
     open override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -389,14 +389,14 @@ open class AcknowListViewController: UITableViewController {
             cell = dequeuedCell
         }
         else {
-            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: CellIdentifier)
+            cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: CellIdentifier)
         }
         
         if let acknowledgements = self.acknowledgements,
             let acknowledgement = acknowledgements[indexPath.row] as Acknow?,
             let textLabel = cell.textLabel as UILabel? {
             textLabel.text = acknowledgement.title
-            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         }
         
         return cell

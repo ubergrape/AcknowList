@@ -73,8 +73,8 @@ public class AcknowViewController: UIViewController {
         textView.font                 = UIFont.systemFont(ofSize: 17)
         textView.isEditable             = false
         textView.dataDetectorTypes    = UIDataDetectorTypes.link
-        textView.textContainerInset   = UIEdgeInsetsMake(12, 10, 12, 10)
-        
+        textView.textContainerInset   = UIEdgeInsets(top: 12, left: 10, bottom: 12, right: 10)
+
         if let acknowledgement = self.acknowledgement {
             textView.text = acknowledgement.text
         }
